@@ -8,7 +8,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
 set hidden
 set updatetime=100
 set signcolumn=number

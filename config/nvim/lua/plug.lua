@@ -1,9 +1,5 @@
 require("nvim-autopairs").setup {}
 require("nvim-tree").setup {}
-require("mason").setup()
-require("mason-lspconfig").setup {
-  automatic_enable = true
-}
 require("nvim-treesitter.configs").setup {
   auto_install = true,
   highlight = {
@@ -18,11 +14,37 @@ require("nvim-treesitter.configs").setup {
   },
 
 }
+require("mason").setup()
+require("mason-lspconfig").setup {
+  automatic_enable = true
+}
 require("blink.cmp").setup {
   keymap = {
     -- set to 'none' to disable the 'default' preset
     preset = 'none',
     ['<Tab>'] = { 'select_next', 'fallback' },
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
-  }
+  },
+  completion = {
+    list = {
+      selection = { preselect = false, auto_insert = true }
+    },
+    documentation = { auto_show = true, auto_show_delay_ms = 500 },
+    ghost_text = { enabled = true },
+  },
 }
+
+require("conform").setup({
+  formatters_by_ft = {
+    -- You can customize some of the format options for the filetype (:help conform.format)
+    rust = { "rustfmt", lsp_format = "fallback" },
+    -- Conform will run the first available formatter
+    typescript = { "prettierd", "prettier", stop_after_first = true },
+    typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+  },
+  format_on_save = {
+    -- These options will be passed to conform.format()
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
+})

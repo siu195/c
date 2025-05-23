@@ -18,8 +18,8 @@ Plug 'mason-org/mason.nvim'
 Plug 'mason-org/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'Saghen/blink.cmp'
-" file explorer
+Plug 'Saghen/blink.cmp',{ 'tag': 'v1.3.1' }
+Plug 'stevearc/conform.nvim'
 call plug#end()
 colorscheme moonfly
 
@@ -36,7 +36,7 @@ nnoremap <Leader>f <cmd>Telescope find_files<cr>
 nnoremap <Leader>g <cmd>Telescope live_grep<cr>
 nnoremap <Leader>b <cmd>Telescope buffers<cr>
 " open telescope if no fileArg onopen
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | execute 'Telescope find_files' | endif
+" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | execute 'Telescope find_files' | endif
 " nvim-tree
 nnoremap <Leader>e <cmd>NvimTreeToggle<cr>
 " lsp
@@ -44,5 +44,6 @@ nnoremap <silent> <leader>j :lua vim.diagnostic.goto_next()<CR>
 nnoremap <silent> <leader>k :lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>a :lua vim.lsp.buf.code_action()<CR>
 
 lua require("plug")
